@@ -133,20 +133,20 @@ HTML.prototype.use = function(hydro, root){
         break
       case 'failed':
         var el = fragment('<li class="test fail"><h2>%e <a href="?grep=%e" class="replay">‣</a></h2></li>', test.title, encodeURIComponent(test.title))
-        var str = test.err.stack || test.err.toString()
+        var str = test.error.stack || test.error.toString()
 
         // FF / Opera do not add the message
-        if (!~str.indexOf(test.err.message)) {
-          str = test.err.message + '\n' + str
+        if (!~str.indexOf(test.error.message)) {
+          str = test.error.message + '\n' + str
         }
 
         // <=IE7 stringifies to [Object Error]. Since it can be overloaded, we
         // check for the result of the stringifying.
-        if ('[object Error]' == str) str = test.err.message
+        if ('[object Error]' == str) str = test.error.message
 
         // Safari doesn't give you a stack. Let's at least provide a source line.
-        if (!test.err.stack && test.err.sourceURL && test.err.line !== undefined) {
-          str += "\n(" + test.err.sourceURL + ":" + test.err.line + ")"
+        if (!test.error.stack && test.error.sourceURL && test.error.line !== undefined) {
+          str += "\n(" + test.error.sourceURL + ":" + test.error.line + ")"
         }
 
         el.appendChild(fragment('<pre class="error">%e</pre>', str))
