@@ -55,7 +55,7 @@ HTML.prototype.use = function(hydro, root){
   var failures = items[2].getElementsByTagName('em')[0]
   var failuresLink = items[2].getElementsByTagName('a')[0]
   var duration = items[3].getElementsByTagName('em')[0]
-  var progress = new Progress().size(40)
+  var progress = new Progress().size(40).text('%d%')
   var report = domify('<ul id="hydro-report"></ul>')
   var stack = [report]
 
