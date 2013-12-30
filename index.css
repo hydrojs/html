@@ -1,0 +1,282 @@
+@charset "utf-8";
+
+body {
+  margin:0;
+}
+
+#hydro {
+  font: 20px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 60px 50px;
+}
+
+#hydro ul,
+#hydro li {
+  margin: 0;
+  padding: 0;
+}
+
+#hydro ul {
+  list-style: none;
+}
+
+#hydro h1,
+#hydro h2 {
+  margin: 0;
+}
+
+#hydro h1 {
+  margin-top: 15px;
+  font-size: 1em;
+  font-weight: 200;
+}
+
+#hydro h1 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#hydro h1 a:hover {
+  text-decoration: underline;
+}
+
+#hydro .suite .suite h1 {
+  margin-top: 0;
+  font-size: .8em;
+}
+
+#hydro .hidden {
+  display: none;
+}
+
+#hydro h2 {
+  font-size: 12px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+#hydro .suite {
+  margin-left: 15px;
+}
+
+#hydro .test {
+  margin-left: 15px;
+  overflow: hidden;
+}
+
+#hydro .test.pending:hover h2::after {
+  content: '(pending)';
+  font-family: arial, sans-serif;
+}
+
+#hydro .test.pass.medium .duration {
+  background: #c09853;
+}
+
+#hydro .test.pass.slow .duration {
+  background: #b94a48;
+}
+
+#hydro .test.pass::before {
+  content: '✓';
+  font-size: 12px;
+  display: block;
+  float: left;
+  margin-right: 5px;
+  color: #00d6b2;
+}
+
+#hydro .test.pass .duration {
+  font-size: 9px;
+  margin-left: 5px;
+  padding: 2px 5px;
+  color: #fff;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.2);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.2);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.2);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#hydro .test.pass.fast .duration {
+  display: none;
+}
+
+#hydro .test.pending {
+  color: #0b97c4;
+}
+
+#hydro .test.pending::before {
+  content: '◦';
+  color: #0b97c4;
+}
+
+#hydro .test.fail {
+  color: #c00;
+}
+
+#hydro .test.fail pre {
+  color: black;
+}
+
+#hydro .test.fail::before {
+  content: '✖';
+  font-size: 12px;
+  display: block;
+  float: left;
+  margin-right: 5px;
+  color: #c00;
+}
+
+#hydro .test pre.error {
+  color: #c00;
+  max-height: 300px;
+  overflow: auto;
+}
+
+/**
+ * (1): approximate for browsers not supporting calc
+ * (2): 42 = 2*15 + 2*10 + 2*1 (padding + margin + border)
+ *      ^^ seriously
+ */
+#hydro .test pre {
+  display: block;
+  float: left;
+  clear: left;
+  font: 12px/1.5 monaco, monospace;
+  margin: 5px;
+  padding: 15px;
+  border: 1px solid #eee;
+  max-width: 85%; /*(1)*/
+  max-width: calc(100% - 42px); /*(2)*/
+  word-wrap: break-word;
+  border-bottom-color: #ddd;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 0 1px 3px #eee;
+  -moz-border-radius: 3px;
+  -moz-box-shadow: 0 1px 3px #eee;
+  border-radius: 3px;
+}
+
+#hydro .test h2 {
+  position: relative;
+}
+
+#hydro .test a.replay {
+  position: absolute;
+  top: 3px;
+  right: 0;
+  text-decoration: none;
+  vertical-align: middle;
+  display: block;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  text-align: center;
+  background: #eee;
+  font-size: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  -webkit-transition: opacity 200ms;
+  -moz-transition: opacity 200ms;
+  transition: opacity 200ms;
+  opacity: 0.3;
+  color: #888;
+}
+
+#hydro .test:hover a.replay {
+  opacity: 1;
+}
+
+#hydro-report.pass .test.fail {
+  display: none;
+}
+
+#hydro-report.fail .test.pass {
+  display: none;
+}
+
+#hydro-report.pending .test.pass,
+#hydro-report.pending .test.fail {
+  display: none;
+}
+#hydro-report.pending .test.pass.pending {
+  display: block;
+}
+
+#hydro-error {
+  color: #c00;
+  font-size: 1.5em;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+
+#hydro-stats {
+  position: fixed;
+  top: 15px;
+  right: 10px;
+  font-size: 12px;
+  margin: 0;
+  color: #888;
+  z-index: 1;
+}
+
+#hydro-stats .progress {
+  float: right;
+  padding-top: 0;
+}
+
+#hydro-stats em {
+  color: black;
+}
+
+#hydro-stats a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#hydro-stats a:hover {
+  border-bottom: 1px solid #eee;
+}
+
+#hydro-stats li {
+  display: inline-block;
+  margin: 0 5px;
+  list-style: none;
+  padding-top: 11px;
+}
+
+#hydro-stats svg {
+  height: 42px;
+  width: 42px;
+}
+
+#hydro-stats path {
+  stroke: #bbb;
+  stroke-width: 1;
+  fill: none;
+}
+
+#hydro-stats text {
+  fill: grey;
+  font-family: helvetica;
+  font-size:12;
+}
+
+#hydro code .comment { color: #ddd; }
+#hydro code .init { color: #2f6fad; }
+#hydro code .string { color: #5890ad; }
+#hydro code .keyword { color: #8a6343; }
+#hydro code .number { color: #2f6fad; }
+
+@media screen and (max-device-width: 480px) {
+  #hydro {
+    margin: 60px 0px;
+  }
+
+  #hydro #stats {
+    position: absolute;
+  }
+}
