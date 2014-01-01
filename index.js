@@ -95,7 +95,6 @@ HTML.prototype.use = function(hydro, root){
   })
 
   hydro.on('post:suite', function(suite){
-    if (suite.root) return
     stack.shift()
   })
 
@@ -103,14 +102,8 @@ HTML.prototype.use = function(hydro, root){
     if ('hook' == test.type) hydro.emit('test end', test)
   })
 
-  hydro.on('pre:test', function(test){
-    test.start = new Date
-  })
-
   hydro.on('post:test', function(test){
     progress.update(stats.percent)
-    test.duration = new Date - test.start
-    test.speed = 'fast'
 
     // update stats
     text(passes, stats.passes)
@@ -122,9 +115,9 @@ HTML.prototype.use = function(hydro, root){
       case 'passed':
         var el = fragment(
           '<li class="test pass %s"><h2>%e<span class="duration">%ems</span> <a href="%s" class="replay">‣</a></h2></li>',
-          test.speed,
+          test.speed || 'fast',
           test.title,
-          test.duration,
+          test.time,
           self.testURL(test))
         break
       case 'pending':
@@ -152,8 +145,7 @@ HTML.prototype.use = function(hydro, root){
         el.appendChild(fragment('<pre class="error">%e</pre>', str))
     }
 
-    // toggle code
-    // TODO: defer
+    // hide code
     if (test.status != 'pending') {
       var h2 = el.getElementsByTagName('h2')[0]
       bind(h2, 'click', function(){
