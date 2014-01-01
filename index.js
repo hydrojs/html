@@ -59,8 +59,9 @@ HTML.prototype.use = function(hydro, root){
   var report = domify('<ul id="hydro-report"></ul>')
   var stack = [report]
 
-  root = root || document.getElementById('hydro')
-  if (!root) return error('#hydro div missing, add it to your document')
+  root = root 
+    || document.getElementById('hydro')
+    || document.body.appendChild(domify('<div id=hydro></div>'))
 
   items[0].appendChild(progress.el)
   root.appendChild(stat)
@@ -209,14 +210,6 @@ function track(hydro){
 HTML.prototype.suiteURL = function(suite){
   // TODO: fullTitle
   return '?grep=' + encodeURIComponent(suite.title)
-}
-
-/**
- * Display error `msg`.
- */
-
-function error(msg) {
-  document.body.appendChild(fragment('<div id="hydro-error">%s</div>', msg))
 }
 
 /**
