@@ -55,7 +55,7 @@ HTML.prototype.use = function(hydro, root){
   var report = domify('<ul id=hydro-report></ul>')
   var stack = [report]
 
-  root = root 
+  root = root
     || document.getElementById('hydro')
     || document.body.appendChild(domify('<div id=hydro></div>'))
 
@@ -153,9 +153,7 @@ HTML.prototype.use = function(hydro, root){
       pre.style.display = 'none'
     }
 
-    // Don't call .appendChild if #hydro-report was already
-    // .shift()'ed off the stack.
-    if (stack[0]) stack[0].appendChild(el)
+    stack[0].appendChild(el)
   })
 }
 
