@@ -153,6 +153,12 @@ HTML.prototype.use = function(hydro, root){
       pre.style.display = 'none'
     }
 
+    // set focus
+    bind(h2, 'dblclick', function(){
+      // TODO: fullTitle()
+      location.search = '?focus=' + encodeURIComponent(h2.firstChild.textContent)
+    })
+
     stack[0].appendChild(el)
   })
 }
@@ -203,7 +209,7 @@ function track(hydro){
 
 HTML.prototype.suiteURL = function(suite){
   // TODO: fullTitle
-  return '?grep=' + encodeURIComponent(suite.title)
+  return '?focus=' + encodeURIComponent(suite.title)
 }
 
 /**
