@@ -148,7 +148,7 @@ HTML.prototype.use = function(hydro, root){
           ? 'block'
           : 'none'
       })
-      var pre = fragment('<pre><code>%e</code></pre>', clean(test.fn.toString()))
+      var pre = fragment('<pre><code>%s</code></pre>', highlight(clean(test.fn.toString())))
       el.appendChild(pre)
       pre.style.display = 'none'
     }
@@ -265,4 +265,24 @@ function clean(str) {
     + '{' + (tabs || spaces) + '}', 'gm')
 
   return str.replace(re, '').trim()
+}
+
+/**
+ * Highlight the given string of `js`.
+ *
+ * @param {String} js
+ * @return {String}
+ * @api private
+ */
+
+function highlight(js) {
+  return js
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\/\/(.*)/gm, '<span class="comment">//$1</span>')
+    .replace(/('.*?')/gm, '<span class="string">$1</span>')
+    .replace(/(\d+\.\d+)/gm, '<span class="number">$1</span>')
+    .replace(/(\d+)/gm, '<span class="number">$1</span>')
+    .replace(/\bnew *(\w+)/gm, '<span class="keyword">new</span> <span class="init">$1</span>')
+    .replace(/\b(function|new|throw|return|var|if|else)\b/gm, '<span class="keyword">$1</span>')
 }
