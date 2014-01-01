@@ -83,7 +83,6 @@ HTML.prototype.use = function(hydro, root){
   })
 
   hydro.on('pre:suite', function(suite){
-
     // suite
     var url = self.suiteURL(suite)
     var el = fragment('<li class="suite"><h1><a href="%s">%e</a></h1></li>', url, suite.title)
@@ -98,10 +97,6 @@ HTML.prototype.use = function(hydro, root){
     stack.shift()
   })
 
-  hydro.on('fail', function(test, err){
-    if ('hook' == test.type) hydro.emit('test end', test)
-  })
-
   hydro.on('post:test', function(test){
     progress.update(stats.percent)
 
@@ -114,18 +109,18 @@ HTML.prototype.use = function(hydro, root){
     switch (test.status) {
       case 'passed':
         var el = fragment(
-          '<li class="test pass %s"><h2>%e<span class="duration">%ems</span> <a href="%s" class="replay">‣</a></h2></li>',
+          '<li class="test pass %s"><h2>%e<span class=duration>%sms</span></h2></li>',
           test.speed || 'fast',
           test.title,
-          test.time,
-          self.testURL(test))
+          test.time)
         break
       case 'pending':
       case 'skipped':
-        var el = fragment('<li class="test pass pending"><h2>%e</h2></li>', test.title)
+        var el = fragment(
+          '<li class="test pass pending"><h2>%e</h2></li>',
+          test.title)
         break
       case 'failed':
-        var el = fragment('<li class="test fail"><h2>%e <a href="?grep=%e" class="replay">‣</a></h2></li>', test.title, encodeURIComponent(test.title))
         var str = test.error.stack || test.error.toString()
 
         // FF / Opera do not add the message
@@ -142,7 +137,10 @@ HTML.prototype.use = function(hydro, root){
           str += "\n(" + test.error.sourceURL + ":" + test.error.line + ")"
         }
 
-        el.appendChild(fragment('<pre class="error">%e</pre>', str))
+        var el = fragment(
+          '<li class="test fail"><h2>%e</h2><pre class=error>%e</pre></li>',
+          test.title,
+          str)
     }
 
     // hide code
@@ -211,17 +209,6 @@ function track(hydro){
 HTML.prototype.suiteURL = function(suite){
   // TODO: fullTitle
   return '?grep=' + encodeURIComponent(suite.title)
-}
-
-/**
- * Provide test URL
- *
- * @param {Object} [test]
- */
-
-HTML.prototype.testURL = function(test){
-  // TODO: fullTitle
-  return '?grep=' + encodeURIComponent(test.title)
 }
 
 /**
