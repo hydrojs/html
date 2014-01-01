@@ -13,10 +13,6 @@ var text = require('text')
 
 var global = function(){return this}()
 var Date = global.Date
-var setTimeout = global.setTimeout
-var setInterval = global.setInterval
-var clearTimeout = global.clearTimeout
-var clearInterval = global.clearInterval
 
 /**
  * Expose `HTML`.
@@ -56,7 +52,7 @@ HTML.prototype.use = function(hydro, root){
   var failuresLink = items[2].getElementsByTagName('a')[0]
   var duration = items[3].getElementsByTagName('em')[0]
   var progress = new Progress().size(40).text('%d%')
-  var report = domify('<ul id="hydro-report"></ul>')
+  var report = domify('<ul id=hydro-report></ul>')
   var stack = [report]
 
   root = root 
