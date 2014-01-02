@@ -4,6 +4,7 @@
   "description": "html formatter for hydro",
   "keywords": ["hydro-plugin","html"],
   "dependencies": {
+    "function-source": "yields/function-source#89296b9b25",
     "event-component": "component/event#0.1.2",
     "classes": "jkroso/classes#1.1.1",
     "text": "matthewp/text#0.0.2",

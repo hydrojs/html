@@ -1,5 +1,6 @@
 
 var bind = require('event-component').bind
+var clean = require('function-source')
 var Progress = require('progress-svg')
 var escape = require('escape-html')
 var classes = require('classes')
@@ -148,7 +149,7 @@ HTML.prototype.use = function(hydro, root){
           ? 'block'
           : 'none'
       })
-      var pre = fragment('<pre><code>%s</code></pre>', highlight(clean(test.fn.toString())))
+      var pre = fragment('<pre><code>%s</code></pre>', highlight(clean(test.fn).trim()))
       el.appendChild(pre)
       pre.style.display = 'none'
     }
@@ -248,29 +249,6 @@ function hideSuitesWithout(classname) {
 function unhide() {
   var els = document.getElementsByClassName('suite hidden')
   for (var i = 0; i < els.length; ++i) classes.remove('hidden', els[i])
-}
-
-/**
- * Strip the function definition from `str`
- *
- * @param {String} str
- * @return {String}
- * @api private
- */
-
-function clean(str) {
-  str = str
-    .replace(/\r\n?|[\n\u2028\u2029]/g, "\n").replace(/^\uFEFF/, '')
-    .replace(/^function *\(.*\) *{/, '')
-    .replace(/\s+\}$/, '')
-
-  var spaces = str.match(/^\n?( *)/)[1].length
-  var tabs = str.match(/^\n?(\t*)/)[1].length
-  var re = new RegExp(''
-    + '^\n?' + (tabs ? '\t' : ' ')
-    + '{' + (tabs || spaces) + '}', 'gm')
-
-  return str.replace(re, '').trim()
 }
 
 /**
