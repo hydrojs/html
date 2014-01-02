@@ -168,12 +168,11 @@ function track(hydro){
     pending: 0,
     tests: 0,
     passes: 0,
-    failures: 0,
-    total: hydro.tests().length
+    failures: 0
   }
 
   hydro.on('post:test', function(test){
-    stats.percent = (++stats.tests / stats.tests) * 100 | 0
+    stats.percent = (++stats.tests / stats.total) * 100 | 0
     stats.elapsed = new Date - stats.start
     switch (test.status) {
       case 'pending':
@@ -190,7 +189,7 @@ function track(hydro){
 
   hydro.on('pre:all', function() {
     stats.start = new Date
-    stats.tests = hydro.tests().length
+    stats.total = hydro.tests().length
   })
 
   hydro.on('post:all', function(){
