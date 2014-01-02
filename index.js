@@ -81,11 +81,11 @@ HTML.prototype.use = function(hydro, root){
   })
 
   hydro.on('pre:suite', function(suite){
-    // suite
-    var url = self.suiteURL(suite)
-    var el = fragment('<li class="suite"><h1><a href="%s">%e</a></h1></li>', url, suite.title)
+    var el = fragment(
+      '<li class="suite"><h1><a href="%s">%e</a></h1></li>',
+      grep(suite),
+      suite.title)
 
-    // container
     stack[0].appendChild(el)
     stack.unshift(document.createElement('ul'))
     el.appendChild(stack[0])
@@ -156,8 +156,7 @@ HTML.prototype.use = function(hydro, root){
 
     // set focus
     bind(h2, 'dblclick', function(){
-      // TODO: fullTitle()
-      location.search = '?focus=' + encodeURIComponent(h2.firstChild.textContent)
+      location.search = grep(test)
     })
 
     stack[0].appendChild(el)
@@ -203,14 +202,14 @@ function track(hydro){
 }
 
 /**
- * Provide suite URL
+ * create a querystring to grep for `obj`
  *
- * @param {Object} [suite]
+ * @param {Suite|Test} obj
+ * @api private
  */
 
-HTML.prototype.suiteURL = function(suite){
-  // TODO: fullTitle
-  return '?focus=' + encodeURIComponent(suite.title)
+function grep(obj){
+  return '?focus=' + encodeURIComponent(obj.title) // TODO: fullTitle
 }
 
 /**
