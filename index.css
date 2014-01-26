@@ -64,7 +64,7 @@ body {
 }
 
 #hydro .test.pending:hover h2::after {
-  content: '(pending)';
+  content: ' (pending)';
   font-family: arial, sans-serif;
 }
 
