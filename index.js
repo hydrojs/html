@@ -27,8 +27,8 @@ exports = module.exports = HTML
 
 var statsTemplate = '<ul id="hydro-stats">'
   + '<li class="progress"></li>'
-  + '<li class="passes"><a href="#">passes:</a> <em>0</em></li>'
-  + '<li class="failures"><a href="#">failures:</a> <em>0</em></li>'
+  + '<li class="passes"><a>passes:</a> <em>0</em></li>'
+  + '<li class="failures"><a>failures:</a> <em>0</em></li>'
   + '<li class="duration">duration: <em>0</em>s</li>'
   + '</ul>'
 
@@ -67,17 +67,17 @@ HTML.prototype.use = function(hydro, root){
   // pass toggle
   bind(passesLink, 'click', function(){
     unhide()
-    var name = /pass/.test(report.className) ? '' : ' pass'
-    report.className = report.className.replace(/fail|pass/g, '') + name
-    if (report.className.trim()) hideSuitesWithout('test pass')
+    classes.remove('fail', report)
+    classes.toggle('pass', report)
+    classes.has('pass', report) && hideSuitesWithout('test pass')
   })
 
   // failure toggle
   bind(failuresLink, 'click', function(){
     unhide()
-    var name = /fail/.test(report.className) ? '' : ' fail'
-    report.className = report.className.replace(/fail|pass/g, '') + name
-    if (report.className.trim()) hideSuitesWithout('test fail')
+    classes.remove('pass', report)
+    classes.toggle('fail', report)
+    classes.has('fail', report) && hideSuitesWithout('test fail')
   })
 
   hydro.on('pre:suite', function(suite){
