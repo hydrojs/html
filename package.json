@@ -8,12 +8,12 @@
     "event-component": "component/event#0.1.2",
     "classes": "jkroso/classes#1.1.1",
     "text": "matthewp/text#0.0.2",
-    "progress-svg": "~0.1.0",
+    "progress-svg": "~0.1.1",
     "escape-html": "~1.0.1",
     "domify": "~1.1.1"
   },
-  "repository": "git://github.com/jkroso/hydro-html.git",
-  "bugs": "https://github.com/jkroso/hydro-html/issues",
+  "repository": "git://github.com/hydrojs/hydro-html.git",
+  "bugs": "https://github.com/hydrojs/hydro-html/issues",
   "author": "Jake Rosoman",
   "files": ["index.js", "index.css"],
   "license": "MIT"
