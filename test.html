@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>hydro-html tests</title>
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div id="hydro"></div>
+<script>
+  var Hydro = require('hydro')
+  var hydro = new Hydro
+
+  hydro.set({
+    suite: 'hydro-html',
+    formatter: require('./index'),
+    plugins: [ require('hydro-bdd') ],
+    timeout: 500
+  })
+
+  hydro.setup()
+
+  it('pass', function(){})
+
+  describe('non runners', function(){
+    it('skip', function(){}).skip()
+    it('pending')
+  })
+
+  it('fail', function(){throw new Error('boom')})
+
+  describe('async', function(){
+    it('pass', function(done){setTimeout(done, 0)})
+    it('fail', function(done){setTimeout(done, 0, new Error('boom'))})
+  })
+
+  hydro.run()
+</script>
+</body>
+</html>
