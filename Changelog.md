@@ -1,10 +1,16 @@
 
+0.3.1 / 2014-01-27
+==================
+
+ * fix: IE8+ compatibility
+ * fix: bug when using pending tests
+ * fix: stats alignment
+
 0.3.0 / 2014-01-27
 ==================
 
- * IE8+ compatibility
- * fix progress indicator
- * add basic syntax highlighting
+ * fix: progress indicator
+ * add: basic syntax highlighting
 
 0.2.0 / 2014-01-02 
 ==================
