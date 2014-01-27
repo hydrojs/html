@@ -127,10 +127,6 @@ HTML.prototype.use = function(hydro, root){
           str = test.error.message + '\n' + str
         }
 
-        // <=IE7 stringifies to [Object Error]. Since it can be overloaded, we
-        // check for the result of the stringifying.
-        if ('[object Error]' == str) str = test.error.message
-
         // Safari doesn't give you a stack. Let's at least provide a source line.
         if (!test.error.stack && test.error.sourceURL && test.error.line !== undefined) {
           str += "\n(" + test.error.sourceURL + ":" + test.error.line + ")"
