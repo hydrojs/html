@@ -30,7 +30,11 @@
 
   describe('async', function(){
     it('pass', function(done){setTimeout(done, 0)})
-    it('fail', function(done){setTimeout(done, 0, new Error('boom'))})
+    it('fail', function(done){
+      setTimeout(function(){
+        done(new Error('boom'))
+      }, 0)
+    })
   })
 
   hydro.run()
