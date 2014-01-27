@@ -6,6 +6,7 @@ var escape = require('escape-html')
 var classes = require('classes')
 var domify = require('domify')
 var text = require('text')
+var trim = require('trim')
 
 /**
  * Save timer references because some testing tools
@@ -144,7 +145,7 @@ HTML.prototype.use = function(hydro, root){
     // hide code
     if (test.status != 'pending') {
       var h2 = el.getElementsByTagName('h2')[0]
-      var pre = fragment('<pre><code>%s</code></pre>', highlight(clean(test.fn).trim()))
+      var pre = fragment('<pre><code>%s</code></pre>', highlight(trim(clean(test.fn))))
       el.appendChild(pre)
       pre.style.display = 'none'
 

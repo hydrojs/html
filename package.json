@@ -10,7 +10,8 @@
     "text": "matthewp/text#0.0.2",
     "progress-svg": "~0.1.1",
     "escape-html": "~1.0.1",
-    "domify": "~1.1.1"
+    "domify": "~1.1.1",
+    "trim": "~0.0.1"
   },
   "devDependencies": {
     "serve": "jkroso/serve",
