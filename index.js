@@ -144,20 +144,20 @@ HTML.prototype.use = function(hydro, root){
     // hide code
     if (test.status != 'pending') {
       var h2 = el.getElementsByTagName('h2')[0]
+      var pre = fragment('<pre><code>%s</code></pre>', highlight(clean(test.fn).trim()))
+      el.appendChild(pre)
+      pre.style.display = 'none'
+
+      bind(h2, 'dblclick', function(){
+        location.search = grep(test)
+      })
+
       bind(h2, 'click', function(){
         pre.style.display = 'none' == pre.style.display
           ? 'block'
           : 'none'
       })
-      var pre = fragment('<pre><code>%s</code></pre>', highlight(clean(test.fn).trim()))
-      el.appendChild(pre)
-      pre.style.display = 'none'
     }
-
-    // set focus
-    bind(h2, 'dblclick', function(){
-      location.search = grep(test)
-    })
 
     stack[0].appendChild(el)
   })
