@@ -225,7 +225,7 @@ body {
 
 #hydro-stats .progress {
   float: right;
-  padding-top: 0;
+  padding: 0;
 }
 
 #hydro-stats em {
@@ -246,12 +246,12 @@ body {
   display: inline-block;
   margin: 0 5px;
   list-style: none;
-  padding-top: 11px;
+  padding-top: 17px;
 }
 
 #hydro-stats svg {
-  height: 42px;
-  width: 42px;
+  height: 50px;
+  width: 50px;
 }
 
 #hydro-stats path {
