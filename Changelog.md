@@ -1,4 +1,11 @@
 
+0.4.0 / 2014-03-30
+==================
+
+ * use fullTitle for grepping
+ * add: support for grepping tests
+ * fix: unhide passing tests
+
 0.3.1 / 2014-01-27
 ==================
 
@@ -16,4 +23,3 @@
 ==================
 
 * initial release
-
