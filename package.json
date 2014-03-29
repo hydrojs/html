@@ -11,7 +11,8 @@
     "progress-svg": "~0.1.1",
     "escape-html": "~1.0.1",
     "domify": "~1.1.1",
-    "trim": "~0.0.1"
+    "trim": "~0.0.1",
+    "qs": "*"
   },
   "devDependencies": {
     "serve": "jkroso/serve",

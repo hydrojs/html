@@ -7,6 +7,7 @@ var classes = require('classes')
 var domify = require('domify')
 var text = require('text')
 var trim = require('trim')
+var qs = require('qs')
 
 /**
  * Save timer references because some testing tools
@@ -156,6 +157,13 @@ HTML.prototype.use = function(hydro, root){
     }
 
     stack[0].appendChild(el)
+  })
+
+  // grep tests
+  var query = location.search.replace(/^\?/, '')
+  var focus = qs.parse(query).focus
+  if (focus) hydro.on('pre:test', function(test) {
+    if (test.fullTitle().indexOf(focus) < 0) test.skip()
   })
 }
 
