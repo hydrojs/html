@@ -41,10 +41,9 @@ var statsTemplate = '<ul id="hydro-stats">'
  * @api public
  */
 
-function HTML(hydro, root){}
+function HTML(){}
 
 HTML.prototype.use = function(hydro, root){
-  var self = this
   var stats = track(hydro)
   var stat = domify(statsTemplate)
   var items = stat.getElementsByTagName('li')
@@ -92,7 +91,7 @@ HTML.prototype.use = function(hydro, root){
     el.appendChild(stack[0])
   })
 
-  hydro.on('post:suite', function(suite){
+  hydro.on('post:suite', function(){
     stack.shift()
   })
 
@@ -242,7 +241,7 @@ function hideSuitesWithout(classname) {
  */
 
 function unhide() {
-  var els = document.getElementsByClassName('suite hidden')
+  var els = document.getElementsByClassName('suite')
   for (var i = 0; i < els.length; ++i) classes.remove('hidden', els[i])
 }
 
