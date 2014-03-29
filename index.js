@@ -204,7 +204,7 @@ function track(hydro){
  */
 
 function grep(obj){
-  return '?focus=' + encodeURIComponent(obj.title) // TODO: fullTitle
+  return '?focus=' + encodeURIComponent(obj.fullTitle())
 }
 
 /**
