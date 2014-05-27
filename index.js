@@ -18,13 +18,13 @@ var global = function(){return this}()
 var Date = global.Date
 
 /**
- * Expose `HTML`.
+ * Expose plugin
  */
 
-exports = module.exports = HTML
+module.exports = plugin
 
 /**
- * Stats template.
+ * Stats template
  */
 
 var statsTemplate = '<ul id="hydro-stats">'
@@ -35,16 +35,15 @@ var statsTemplate = '<ul id="hydro-stats">'
   + '</ul>'
 
 /**
- * Initialize a new `HTML` reporter.
+ * bind a new `HTML` reporter
  *
  * @param {Hydro} hydro
+ * @param {Object} utils
  * @param {Element} root
  * @api public
  */
 
-function HTML(){}
-
-HTML.prototype.use = function(hydro, root){
+function plugin(hydro, utils, root){
   var stats = track(hydro)
   var stat = domify(statsTemplate)
   var items = stat.getElementsByTagName('li')
