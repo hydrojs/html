@@ -1,7 +1,10 @@
-
 # hydro-html
 
   A [hydro](//github.com/hydrojs/hydro) formatter which renders to the DOM
+
+## WIP
+
+Work in progress. Please do not use yet.
 
 ## Installation
 
